@@ -1,0 +1,5 @@
+Jinja2==2.8
+tornado==4.3
+Tornado-MySQL==0.6.4
+redis==2.10.5
+MySQL-python==1.2.5
