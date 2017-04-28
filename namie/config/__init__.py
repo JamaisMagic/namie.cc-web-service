@@ -24,7 +24,7 @@ DB_TEST = {
     'PORT': 3306,
     'USER': 'root',
     'PWD': '123456',
-    'DB': 'short_url_test',
+    'DB': 'cc_namie_normal_test',
 }
 
 DB_OFFICIAL = {
@@ -32,7 +32,7 @@ DB_OFFICIAL = {
     'PORT': 3306,
     'USER': 'root',
     'PWD': '123456',
-    'DB': 'short_url',
+    'DB': 'cc_namie_normal',
 }
 
 RDB_TEST = {

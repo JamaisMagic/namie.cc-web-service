@@ -12,9 +12,9 @@ import tornado.options
 import tornado.web
 from os import path
 
-from lcoc import config
-from lcoc import handler as hdl
-from lcoc import conn
+from namie import config
+from namie import handler as hdl
+from namie import conn
 
 handlers = [
     (r"/", hdl.IndexHandler),
