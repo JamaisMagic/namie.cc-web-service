@@ -5,7 +5,7 @@
 
 import random
 import tornado.web
-import tornado.gen
+import tornado.gen as gen
 
 
 def probability(val):
@@ -15,10 +15,7 @@ def probability(val):
 class StatusHandler(tornado.web.RequestHandler):
     permit_mcc = {}
 
-    # @tornado.gen.coroutine
+    @gen.coroutine
     def get(self):
         self.write('''Hello Shorten.''')
         self.finish('finished.')
-        return
-
-

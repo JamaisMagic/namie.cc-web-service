@@ -17,7 +17,7 @@ if TEST not in ('OFFICIAL', 'TEST'):
 if TEST == "OFFICIAL":
     HOST = "http://namie.cc"
 else:
-    HOST = "http://namie.cc"
+    HOST = "http://test.namie.cc"
 
 DB_TEST = {
     'HOST': '127.0.0.1',

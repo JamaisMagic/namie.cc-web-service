@@ -4,12 +4,14 @@
 """
 
 import tornado.web
-import tornado.gen
+import tornado.gen as gen
+
 from ..lib.base62 import Base62
+from baseHandle import BaseHandler
 
 
-class RedirectHandler(tornado.web.RequestHandler):
-    @tornado.gen.coroutine
+class RedirectHandler(BaseHandler):
+    @gen.coroutine
     def get(self, **params):
         redirect_id = params['redirect_id']
         redirect_id_base_10 = Base62.decode(redirect_id)
