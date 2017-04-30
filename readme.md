@@ -1,4 +1,4 @@
-# namie.cc source code
+# A simple url shortener
 
 ### environment
 ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
