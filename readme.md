@@ -27,6 +27,11 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 * pip install supervisor
 
 ### run
-* supervisord -c namie.cc.supervisor.conf
+#### for test
+* sudo supervisord -c /vagrant_data/namie.cc/supervisord.conf
+* sudo supervisorctl -c /vagrant_data/namie.cc/supervisord.conf
 * or
 * python server.py -p 4020 -t test
+#### for production
+* sudo supervisord -c /data/app/namie.cc/supervisord.conf
+* sudo supervisorctl -c /data/app/namie.cc/supervisord.conf
