@@ -4,3 +4,4 @@ node_modules/
 /node_modules/
 *.pyc
 supervisord.log
+supervisord.pid
