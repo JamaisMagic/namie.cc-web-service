@@ -4,6 +4,8 @@
 ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 
 * sudo apt-get install python
+* sudo apt-get install python-dev
+* sudo apt-get install build-essential
 * sudo apt-get install python-pip
 * sudo apt-get install mysql-server
 * sudo apt-get install libmysqlclient-dev
@@ -11,8 +13,8 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 * sudo -H pip install -r requirements.txt
 
 ### mysql
-* create database cc_namie_normal_test default character set utf8;
-* create database cc_namie_normal default character set utf8; (for production)s
+* create database cc_namie_normal_test default character set utf8; (for test.)
+* create database cc_namie_normal default character set utf8;
 
     
     create table url (
