@@ -22,7 +22,7 @@ handlers = [
     (r"/", hdl.IndexHandler),
     (r"/test/?", hdl.test.TestHandler),
     (r"/api/shorten/?", hdl.shorten.ShortenHandler),
-    (r"/?(?P<redirect_id>[0-9|a-z|A-Z]+/?)?", hdl.redirect.RedirectHandler)
+    (r"/([0-9|a-z|A-Z]+/?)", hdl.redirect.RedirectHandler)
 ]
 
 tornado.web.RequestHandler.conn = conn.Conn()
@@ -32,7 +32,7 @@ def run(port):
     settings = {
         'static_path':
             path.join(path.dirname(path.abspath(__file__)), 'static'),
-        'compress_response': True,
+        'compress_response': True
     }
     app = tornado.web.Application(handlers=handlers, **settings)
     http_server = tornado.httpserver.HTTPServer(app, xheaders=True)

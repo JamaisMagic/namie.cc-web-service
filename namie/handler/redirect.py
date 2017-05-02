@@ -12,9 +12,8 @@ from baseHandle import BaseHandler
 
 class RedirectHandler(BaseHandler):
     @gen.coroutine
-    def get(self, **params):
-        redirect_id = params['redirect_id']
-        redirect_id_base_10 = Base62.decode(redirect_id)
+    def get(self, url_id):
+        redirect_id_base_10 = Base62.decode(url_id)
 
         cursor = self.conn.dbc.cursor()
         sql_select = 'select url from url where id=%s limit 1'

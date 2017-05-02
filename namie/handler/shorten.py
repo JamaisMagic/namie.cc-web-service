@@ -33,9 +33,13 @@ class ShortenHandler(BaseHandler):
         cursor.close()
         self.conn.dbc.commit()
 
+        res_url_id = base62_encoded
+        if len(base62_encoded) < 6:
+            res_url_id = base62_encoded.zfill(6)
+
         result = {
-            'url': config.HOST + '/' + base62_encoded,
+            'url': config.HOST + '/' + res_url_id,
             'original': url
         }
         self.write(result)
-        raise tornado.gen.Return()
+        self.finish()
