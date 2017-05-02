@@ -23,5 +23,10 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
         PRIMARY KEY (id)
     ) DEFAULT CHARSET=utf8;
 
+### supervisor 3.3.1
+* pip install supervisor
+
 ### run
+* supervisord -c namie.cc.supervisor.conf
+* or
 * python server.py -p 4020 -t test
