@@ -1,3 +1,3 @@
 import '../style/common.styl';
-import '../style/main.styl';
+import '../style/index.styl';
 import Vue from 'vue';

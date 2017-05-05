@@ -4,7 +4,7 @@
 
 const path = require('path');
 
-const distRoot = path.resolve('..', '..', '..', 'static');
+const distRoot = path.resolve('..', '..', '..', '..', 'static');
 
 const mExp = {
     dist_root: distRoot,
