@@ -19,7 +19,7 @@ module.exports.run =  (src, sourceNames, callback) => {
 
     var myConfig = Object.create(webpackConfig);
     myConfig.output.path = distRoot + projectName;
-    myConfig.output.publicPath = projectName + '/';
+    myConfig.output.publicPath = buildConfig.public_path_prefix + projectName + '/';
 
     sourceNames.forEach(function(item) {
         if (fs.existsSync(src + '/script/' + item + '.js')) {

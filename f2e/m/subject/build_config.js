@@ -9,6 +9,7 @@ const distRoot = path.resolve('..', '..', '..', '..', 'static');
 const mExp = {
     dist_root: distRoot,
     project_path: '/m/subject/',
+    public_path_prefix: '/static',
     ASSETS_COMMON_NAME: 'assets_common',
     langs: new Set(['en', 'zh'])
 };
