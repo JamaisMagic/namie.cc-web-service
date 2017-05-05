@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="copyright" content="Copyright (c) cmcm.com" />
+    <% commoncss %>
+    <% css %>
+    <title>Game Center</title>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-84852010-5', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+<div id="app">
+    <normal-header title="Game Center" v-bind:finish="true"></normal-header>
+
+    <div class="main-content">
+        <div class="block-tps">
+            <div class="tips-content">
+                Play games and with credits!
+            </div>
+        </div>
+        <div class="block-game">
+            <div class="con-game">
+                <template>
+                    <ul class="list-game" v-if="games && games.length > 0">
+                        <li class="item" v-for="item in games">
+                            <a class="link-item" v-bind:href="item.url || 'javascript://'">
+                                <div class="box-icon">
+                                    <img v-bind:src="item.icon || '/common/imgs/logo_whatscall_200.png'" alt="" class="icon" onerror="this.src='/common/imgs/logo_whatscall_200.png';this.onerror=null;">
+                                </div>
+                                <div class="box-info">
+                                    <div class="game-title">{{ item.title }}</div>
+                                    <div class="game-desc">{{ item.desc }}</div>
+                                </div>
+                                <div class="box-btn">
+                                    <button type="button" class="btn-play">PLAY</button>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-state page-loading" v-if="is_requesting"></div>
+</div>
+<% commonjsscript %>
+<% jsscript %>
+</body>
+</html>
