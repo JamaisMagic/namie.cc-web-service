@@ -51,4 +51,3 @@ RDB_OFFICIAL = {
 
 DB = locals()['DB_%s' % TEST]
 RDB = locals()['RDB_%s' % TEST]
-

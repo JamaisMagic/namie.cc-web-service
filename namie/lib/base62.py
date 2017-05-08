@@ -33,4 +33,3 @@ class Base62:
             idx += 1
 
         return num
-

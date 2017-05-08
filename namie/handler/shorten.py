@@ -12,6 +12,7 @@ import json
 from ..lib.base62 import Base62
 from .. import config
 from baseHandle import BaseHandler
+from .. dal.shorten import Dal
 
 
 def probability(val):
@@ -23,31 +24,33 @@ class ShortenHandler(BaseHandler):
     def post(self):
         url = (self.body_dict['url'] or '').strip()
         ip = self.request.remote_ip
-        logging.warn('url %s', url)
+        rdbc = self.conn.rdbc
+
         if len(url) <= 0:
             self.result_data['code'] = 1
             self.result_data['msg'] = 'Failed'
             self.finish(self.result_data)
             return
 
-        cursor = self.conn.dbc.cursor()
+        existed = rdbc.get(url)
+        if existed is not None:
+            self.res_success(existed, url)
+            return
 
-        sql_insert = 'insert into url(url,ip) values(%s,%s)'
-        cursor.execute(sql_insert, (url, ip))
-        last_row_id = cursor.lastrowid
+        last_row_id = Dal.insert_url(self.conn.dbc, url, ip)
         base62_encoded = Base62.encode(last_row_id)
-
-        cursor.close()
-        self.conn.dbc.commit()
-
         res_url_id = base62_encoded
         if len(base62_encoded) < 6:
             res_url_id = base62_encoded.zfill(6)
 
+        self.res_success(res_url_id, url)
+        rdbc.setex(url, 3600 * 24 * 7, res_url_id)
+
+    def res_success(self, url_id , original_url):
         self.result_data['code'] = 0
         self.result_data['msg'] = 'Success'
         self.result_data['data'] = {
-            'url': config.HOST + '/' + res_url_id,
-            'original': url
+            'url': config.HOST + '/' + url_id,
+            'original': original_url
         }
         self.finish(self.result_data)

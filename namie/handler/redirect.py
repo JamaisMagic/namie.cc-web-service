@@ -9,6 +9,7 @@ import logging
 
 from ..lib.base62 import Base62
 from baseHandle import BaseHandler
+from ..dal.redirect import Dal
 
 
 class RedirectHandler(BaseHandler):
@@ -18,21 +19,10 @@ class RedirectHandler(BaseHandler):
         self.add_header('pragma', 'no-cache')
 
         redirect_id_base_10 = Base62.decode(url_id)
+        data_url = Dal.query_url(self.conn.dbc, redirect_id_base_10)
 
-        cursor = self.conn.dbc.cursor()
-        sql_select = 'select url from url where id=%s limit 1'
-        count = cursor.execute(sql_select, (redirect_id_base_10,))
-
-        if count <= 0:
-            cursor.close()
+        if data_url is None:
             self.finish('No such url.')
             return
-
-        data_item = cursor.fetchmany(count)
-
-        data_url = data_item[0][0]
-
-        cursor.close()
-        self.conn.dbc.commit()
 
         self.redirect(data_url, False, 301)
