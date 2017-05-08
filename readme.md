@@ -19,8 +19,8 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
     
     create table url (
         id INT NOT NULL AUTO_INCREMENT,
-        url_id VARCHAR(20) NOT NULL, 
         url TEXT NOT NULL, 
+        ct DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         ip VARCHAR(15),
         PRIMARY KEY (id)
     ) DEFAULT CHARSET=utf8;

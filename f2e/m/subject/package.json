@@ -25,6 +25,9 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "axios": "^0.16.1",
+    "blueimp-md5": "^2.7.0",
+    "es6-promise": "^4.1.0",
     "vue": "^2.3.2"
   }
 }

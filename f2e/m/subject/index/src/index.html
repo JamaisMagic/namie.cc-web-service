@@ -8,17 +8,28 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="A simple url shortener" />
+    <meta name="keywords" content="url shortener" />
     <meta name="copyright" content="Copyright (c) namie.cc" />
     <% commoncss %>
     <% css %>
-    <title>namie.cc</title>
+    <title>namie.cc - A simple url shortener</title>
 </head>
 
 <body>
 <div id="app">
-    Hello.
+    <div class="main-content">
+        <p class="tips">Please enter you url and click the submit button.</p>
+        <form v-on:submit.prevent="onSubmit">
+            <input type="url" v-model="url">
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="result">
+            <p class="tips" v-if="res_url">Short url is here:</p>
+            <a target="_blank" v-bind:href="res_url || 'javascript://'" v-text="res_url"></a>
+        </div>
+    </div>
 </div>
 <% commonjsscript %>
 <% jsscript %>

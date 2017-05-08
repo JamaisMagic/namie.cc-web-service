@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import json
 import logging
+import tornado
 import tornado.web
 import tornado.gen as gen
 
@@ -11,7 +13,15 @@ __author__ = 'Jamais'
 
 class BaseHandler(tornado.web.RequestHandler):
     def initialize(self):
-        pass
+        self.result_data = {
+            'code': -1,
+            'msg': '',
+            'data': None
+        }
+        try:
+            self.body_dict = json.loads(self.request.body)
+        except ValueError, e:
+            self.body_dict = dict()
 
     def prepare(self):
         self.add_access_control()
