@@ -12,7 +12,7 @@ class Dal(object):
 
     @staticmethod
     def query_url(dbc, id_base_10):
-        dbc.ping(True)
+        # dbc.ping(True)
         cursor = dbc.cursor()
 
         sql_select = 'select url from url where id=%s limit 1'
