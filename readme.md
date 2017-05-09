@@ -23,7 +23,7 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
         ct DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         ip VARCHAR(15),
         PRIMARY KEY (id)
-    ) DEFAULT CHARSET=utf8;
+    )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 ### supervisor 3.3.1
 * pip install supervisor
