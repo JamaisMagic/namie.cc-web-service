@@ -8,15 +8,12 @@ import tornado
 import time
 import logging
 import json
+import validators
 
 from ..lib.base62 import Base62
 from .. import config
 from baseHandle import BaseHandler
 from .. dal.shorten import Dal
-
-
-def probability(val):
-    return random.random() < val
 
 
 class ShortenHandler(BaseHandler):
@@ -27,14 +24,16 @@ class ShortenHandler(BaseHandler):
         rdbc = self.conn.rdbc
 
         if len(url) <= 0:
-            self.result_data['code'] = 1
-            self.result_data['msg'] = 'Failed'
-            self.finish(self.result_data)
+            self.res_fail(1, 'Failed')
+            return
+
+        if not validators.url(url):
+            self.res_fail(1, 'Not a url')
             return
 
         existed = rdbc.get(url)
         if existed is not None:
-            self.res_success(existed, url)
+            self.success(existed, url)
             return
 
         last_row_id = Dal.insert_url(self.conn.dbc, url, ip)
@@ -43,14 +42,11 @@ class ShortenHandler(BaseHandler):
         if len(base62_encoded) < 6:
             res_url_id = base62_encoded.zfill(6)
 
-        self.res_success(res_url_id, url)
+        self.success(res_url_id, url)
         rdbc.setex(url, 3600 * 24 * 7, res_url_id)
 
-    def res_success(self, url_id , original_url):
-        self.result_data['code'] = 0
-        self.result_data['msg'] = 'Success'
-        self.result_data['data'] = {
+    def success(self, url_id, original_url):
+        self.res_success({
             'url': config.HOST + '/' + url_id,
             'original': original_url
-        }
-        self.finish(self.result_data)
+        })

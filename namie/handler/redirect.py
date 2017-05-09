@@ -11,6 +11,8 @@ from ..lib.base62 import Base62
 from baseHandle import BaseHandler
 from ..dal.redirect import Dal
 
+__author__ = 'Jamais'
+
 
 class RedirectHandler(BaseHandler):
     @gen.coroutine

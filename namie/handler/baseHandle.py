@@ -36,6 +36,14 @@ class BaseHandler(tornado.web.RequestHandler):
         self.add_header('Access-Control-Accept-Headers', 'Content-Type, X-Requested-With, Origin, Accept, Authorization')
         self.add_header('Access-Control-Expose-Headers', 'Date')
 
+    def res_success(self, data):
+        self.result_data['code'] = 0
+        self.result_data['msg'] = 'Success'
+        self.result_data['data'] = data
+        self.finish(self.result_data)
 
-if __name__ == '__main__':
-    pass
+    def res_fail(self, code, msg):
+        self.result_data['code'] = code
+        self.result_data['msg'] = msg
+        self.result_data['data'] = None
+        self.finish(self.result_data)
