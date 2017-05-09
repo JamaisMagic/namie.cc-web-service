@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import MySQLdb
+import pymysql
 import redis
 
 from .. import config
@@ -11,7 +12,7 @@ class Conn:
     def __init__(self):
         db_setting = config.DB
         rdb_setting = config.RDB
-        conn = MySQLdb.connect(
+        conn = pymysql.connect(
             host=db_setting['HOST'],
             port=db_setting['PORT'],
             user=db_setting['USER'],
