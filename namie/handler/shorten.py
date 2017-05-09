@@ -17,7 +17,7 @@ from .. dal.shorten import Dal
 
 
 class ShortenHandler(BaseHandler):
-    PRE_FIX = 'cc_namie_url_short'
+    PRE_FIX = 'cc_namie_url_short_'
     @gen.coroutine
     def post(self):
         url = (self.body_dict['url'] or '').strip()
