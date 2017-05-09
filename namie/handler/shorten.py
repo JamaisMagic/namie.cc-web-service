@@ -17,6 +17,7 @@ from .. dal.shorten import Dal
 
 
 class ShortenHandler(BaseHandler):
+    PRE_FIX = 'cc_namie_url_short'
     @gen.coroutine
     def post(self):
         url = (self.body_dict['url'] or '').strip()
@@ -31,7 +32,7 @@ class ShortenHandler(BaseHandler):
             self.res_fail(1, 'Not a url')
             return
 
-        existed = rdbc.get(url)
+        existed = rdbc.get(self.PRE_FIX + url)
         if existed is not None:
             self.success(existed, url)
             return
@@ -43,7 +44,7 @@ class ShortenHandler(BaseHandler):
             res_url_id = base62_encoded.zfill(6)
 
         self.success(res_url_id, url)
-        rdbc.setex(url, 3600 * 24 * 7, res_url_id)
+        rdbc.setex(self.PRE_FIX + url, 3600 * 24 * 7, res_url_id)
 
     def success(self, url_id, original_url):
         self.res_success({
