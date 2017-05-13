@@ -45,4 +45,4 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 
 ### website
 * [namie.cc website](https://namie.cc/ "namie.cc website")
-* due to the developing status of this project, the data of the website may be deleted at any time.
+* **due to the developing status of this project, the data of the website may be deleted at any time.**
