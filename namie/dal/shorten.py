@@ -12,7 +12,7 @@ class Dal(object):
 
     @staticmethod
     def insert_url(dbc, url, ip):
-        dbc.ping(True)
+        # dbc.ping(True)
         cursor = dbc.cursor()
 
         sql_insert = 'insert into url(url, ip) values(%s, %s)'
