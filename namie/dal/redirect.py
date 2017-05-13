@@ -19,12 +19,13 @@ class Dal(object):
         sql_select = 'select url from url where id=%s limit 1'
         count = cursor.execute(sql_select, (id_base_10,))
 
+        logging.warn('id_base_10: %s', id_base_10)
         logging.warn('count: %s', count)
         logging.warn('rowcount: %s', cursor.rowcount)
 
-        # if count <= 0:
-        #     cursor.close()
-        #     return None
+        if count <= 0:
+            cursor.close()
+            return None
 
         data_item = cursor.fetchone()
         logging.warn('one: %s', data_item)
