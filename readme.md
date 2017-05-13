@@ -42,3 +42,7 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 1. sudo crontab -e
 2. then add this line to the bottom of the file
    @reboot sudo supervisord -c /data/app/namie.cc/supervisord.conf
+
+### website
+* [namie.cc website](https://namie.cc/ "namie.cc website")
+* due to the developing status of this project, the data of the website may be deleted at any time.
