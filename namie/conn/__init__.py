@@ -22,7 +22,8 @@ class Conn:
             port=db_setting['PORT'],
             user=db_setting['USER'],
             passwd=db_setting['PWD'],
-            db=db_setting['DB'])
+            db=db_setting['DB'],
+            charset='utf8')
 
         self.dbc = conn
 

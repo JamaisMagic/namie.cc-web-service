@@ -14,20 +14,21 @@ class Dal(object):
     @staticmethod
     def query_url(dbc, id_base_10):
         ping = dbc.ping(True)
-        logging.warn('%s : %s', ping.server_status, ping.message)
         cursor = dbc.cursor()
 
         sql_select = 'select url from url where id=%s limit 1'
         count = cursor.execute(sql_select, (id_base_10,))
 
         logging.warn('count: %s', count)
+        logging.warn('rowcount: %s', cursor.rowcount)
 
-        if count <= 0:
-            cursor.close()
-            return None
+        # if count <= 0:
+        #     cursor.close()
+        #     return None
 
-        data_item = cursor.fetchmany(count)
-        data_url = data_item[0][0]
+        data_item = cursor.fetchone()
+        logging.warn('one: %s', data_item)
+        data_url = data_item[0]
 
         cursor.close()
 
