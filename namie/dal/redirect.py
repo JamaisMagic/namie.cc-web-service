@@ -18,6 +18,7 @@ class Dal(object):
 
         sql_select = 'select url from url where id=%s limit 1'
         count = cursor.execute(sql_select, (id_base_10,))
+        dbc.commit()
 
         logging.warn('id_base_10: %s', id_base_10)
         logging.warn('count: %s', count)

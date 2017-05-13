@@ -20,6 +20,6 @@ class Dal(object):
         dbc.commit()
         last_row_id = cursor.lastrowid
 
-        # cursor.close()
+        cursor.close()
 
         return last_row_id
