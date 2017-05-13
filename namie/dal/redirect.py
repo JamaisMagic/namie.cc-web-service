@@ -13,15 +13,14 @@ class Dal(object):
 
     @staticmethod
     def query_url(dbc, id_base_10):
-        start = timer()
         ping = dbc.ping(True)
-        end = timer()
         logging.warn('%s : %s', ping.server_status, ping.message)
-        logging.warn('timer %s', end - start)
         cursor = dbc.cursor()
 
         sql_select = 'select url from url where id=%s limit 1'
         count = cursor.execute(sql_select, (id_base_10,))
+
+        logging.warn('count: %s', count)
 
         if count <= 0:
             cursor.close()
