@@ -44,6 +44,9 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 1. sudo crontab -e
 2. then add this line to the bottom of the file
    @reboot sudo supervisord -c /data/app/namie.cc/supervisord.conf
+   
+### If you find something wrong with https or ipv6 conf, see [this article](https://chrisjean.com/fix-nginx-emerg-bind-to-80-failed-98-address-already-in-use/) may help you.
+> Using ipv6only=on ensures that the IPv6 listen directive will only bind to IPv6 and not automatically to IPv4 as well.
 
 ### website
 * [namie.cc website](https://namie.cc/ "namie.cc website")
