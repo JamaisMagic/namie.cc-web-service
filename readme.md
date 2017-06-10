@@ -5,6 +5,7 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 
 * sudo apt-get install python
 * sudo apt-get install python-dev
+* sudo apt-get install python-setuptools
 * sudo apt-get install build-essential
 * sudo apt-get install python-pip
 * sudo apt-get install mysql-server
@@ -26,6 +27,7 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
     )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 ### supervisor 3.3.1
+* pip install wheel
 * pip install supervisor
 
 ### run

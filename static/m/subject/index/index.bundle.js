@@ -1851,7 +1851,7 @@ new _vue2.default({
     el: '#app',
     data: function data() {
         return {
-            url: 'https://google.com?search=666',
+            url: '',
             res_url: ''
         };
     },
@@ -5359,4 +5359,4 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ })
 ],[31]);
-//# sourceMappingURL=index.bundle.js.map?hash=ffbbbedef6
+//# sourceMappingURL=index.bundle.js.map?hash=e9542a0191

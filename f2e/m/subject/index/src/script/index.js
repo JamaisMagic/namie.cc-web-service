@@ -11,7 +11,7 @@ new Vue({
     el: '#app',
     data() {
         return {
-            url: 'https://google.com?search=666',
+            url: '',
             res_url: ''
         };
     },
