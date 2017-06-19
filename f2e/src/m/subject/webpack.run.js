@@ -16,8 +16,8 @@ module.exports.run = (subjectProjectPath, sourceNames, callback) => {
     let src = path.resolve(subjectProjectPath, 'src');
 
     let myConfig = webpackConfig;
-    myConfig.output.path = path.resolve(distRoot, subjectProjectPath.replace(buildConfig.srcRoot, ''));
-    myConfig.output.publicPath = buildConfig.public_path_prefix + subjectProjectPath.replace(buildConfig.srcRoot, '');
+    myConfig.output.path = distRoot + subjectProjectPath.replace(buildConfig.srcRoot, '');
+    myConfig.output.publicPath = buildConfig.public_path_prefix + subjectProjectPath.replace(buildConfig.srcRoot, '') + '/';
 
     sourceNames.forEach(function (item) {
         myConfig.entry[item] = path.resolve(src, 'script', item + '.js');
@@ -62,9 +62,10 @@ module.exports.run = (subjectProjectPath, sourceNames, callback) => {
                         case '<% csspath %>':
                             return csspath;
                         case '<% commoncsscontent %>':
-                            return commoncsspath ? `<link rel="stylesheet" href="${myConfig.output.path}/${ASSETS_COMMON}.bundle.css + '" inline />` : '';
+                            return commoncsspath ? `<link rel="stylesheet" href="${path.relative(src, myConfig.output.path)}/${ASSETS_COMMON}.bundle.css" inline />` : '';
                         case '<% csscontent %>':
-                            return csspath ? `<link rel="stylesheet" href="${myConfig.output.path}/${item}.bundle.css" inline />` : '';
+                            console.log(`${path.relative(src, myConfig.output.path)}/${ASSETS_COMMON}.bundle.css`);
+                            return csspath ? `<link rel="stylesheet" href="${path.relative(src, myConfig.output.path)}/${item}.bundle.css" inline />` : '';
 
                         case '<% commonjsscript %>':
                             return commonjspath ? `<script src="${webpackAsset[ASSETS_COMMON].js}" type="text/javascript"></script>` : '';
@@ -75,9 +76,9 @@ module.exports.run = (subjectProjectPath, sourceNames, callback) => {
                         case '<% jspath %>':
                             return jspath;
                         case '<% commonjscontent %>':
-                            return commonjspath ? `<script src="${myConfig.output.path}/${ASSETS_COMMON}.bundle.js" inline></script>` : '';
+                            return commonjspath ? `<script src="${path.relative(src, myConfig.output.path)}/${ASSETS_COMMON}.bundle.js" inline></script>` : '';
                         case '<% jscontent %>':
-                            return jspath ? `<script src="${myConfig.output.path}/${item}.bundle.js' + '" inline></script>` : '';
+                            return jspath ? `<script src="${path.relative(src, myConfig.output.path)}/${item}.bundle.js" inline></script>` : '';
 
                         default:
                             return match;
@@ -87,6 +88,7 @@ module.exports.run = (subjectProjectPath, sourceNames, callback) => {
                 .pipe(inlinesource())
                 .pipe(htmlmin({collapseWhitespace: true}))
                 .pipe(gulp.dest(myConfig.output.path))
+                .pipe(gulp.dest(buildConfig.dist_root))
                 .on('end', function () {
                     if (index === sourceNames.length - 1) {
                         console.log('build ended start callback');
