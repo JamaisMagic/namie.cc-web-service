@@ -12,13 +12,12 @@ const distRoot = buildConfig.dist_root;
 const ASSETS_COMMON = buildConfig.ASSETS_COMMON_NAME;
 
 
-module.exports.run = (projectName, sourceNames, callback) => {
-    let projectPath = __dirname.replace(buildConfig.srcRoot, '');
-    let src = path.join(__dirname, projectName, 'src');
+module.exports.run = (subjectProjectPath, sourceNames, callback) => {
+    let src = path.resolve(subjectProjectPath, 'src');
 
     let myConfig = webpackConfig;
-    myConfig.output.path = path.join(distRoot, projectPath, projectName);
-    myConfig.output.publicPath = buildConfig.public_path_prefix + projectPath + '/' + projectName;
+    myConfig.output.path = path.resolve(distRoot, subjectProjectPath.replace(buildConfig.srcRoot, ''));
+    myConfig.output.publicPath = buildConfig.public_path_prefix + subjectProjectPath.replace(buildConfig.srcRoot, '');
 
     sourceNames.forEach(function (item) {
         myConfig.entry[item] = path.resolve(src, 'script', item + '.js');
