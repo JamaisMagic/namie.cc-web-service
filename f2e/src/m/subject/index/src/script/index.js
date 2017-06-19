@@ -1,11 +1,14 @@
 import '../style/common.styl';
 import '../style/index.styl';
 import Vue from 'vue';
+import { default as mCommon} from 'cc.namie.jamais';
 
 import {getAxiosInstance} from './modules/request';
 import {URL_PATH} from './modules/request';
 
 const mAxios = getAxiosInstance();
+
+console.log(mCommon.VERSION);
 
 new Vue({
     el: '#app',

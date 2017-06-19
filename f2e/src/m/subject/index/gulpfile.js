@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const gulp = require('gulp');
-const run = require('../webpack.run.js');
+const run = require('../../../webpack.run.js');
 const src = path.resolve(__dirname, 'src');
 
 gulp.task('build', function(callback) {

@@ -164,7 +164,8 @@ module.exports = {
         extensions: ['.js', '.json', '.vue'],
         modules: [
             path.join(__dirname, "src"),
-            "node_modules"
+            "node_modules",
+            "web_modules"
         ],
         alias: {vue: 'vue/dist/vue.min.js'}
     },
