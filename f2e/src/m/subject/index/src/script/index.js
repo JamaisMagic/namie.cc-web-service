@@ -1,4 +1,4 @@
-import '../style/common.styl';
+import 'cc.namie.jamais.m/src/style/common/common.styl';
 import '../style/index.styl';
 import Vue from 'vue';
 import { default as mCommon} from 'cc.namie.jamais';

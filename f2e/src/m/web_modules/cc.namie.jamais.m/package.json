@@ -1,0 +1,7 @@
+{
+  "name": "cc.namie.jamais.m",
+  "version": "0.0.1",
+  "description": "cc.namie.jamais.m",
+  "private": true,
+  "main": "./src/main.js"
+}
