@@ -32,8 +32,8 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 
 ### run
 #### for test
-* sudo supervisord -c /vagrant_data/namie.cc/supervisord.conf
-* sudo supervisorctl -c /vagrant_data/namie.cc/supervisord.conf
+* sudo supervisord -c /vagrant_data/namie.cc/supervisord.test.conf
+* sudo supervisorctl -c /vagrant_data/namie.cc/supervisord.test.conf
 * or
 * python server.py -p 4020 -t test
 #### for production
