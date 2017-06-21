@@ -18,20 +18,31 @@
 
 <body>
 <div id="app">
-    <div class="main-content">
-        <p class="tips">Please enter your url and click the submit button.</p>
-        <form v-on:submit.prevent="onSubmit">
-            <input type="url" v-model="url" placeholder="Url here.">
-            <button type="submit">Submit</button>
-        </form>
+    <template>
+        <v-toolbar class="blue" light fixed="true">
+            <v-toolbar-side-icon light></v-toolbar-side-icon>
+            <v-toolbar-title>namie.cc</v-toolbar-title>
+            <gh-icon light></gh-icon>
+        </v-toolbar>
 
-        <div class="result">
-            <p class="tips" v-if="res_url">Short url is here:</p>
-            <a target="_blank" v-bind:href="res_url || 'javascript://'" v-text="res_url"></a>
+        <div class="main-content">
+            <div class="text-xs-center">
+                <p class="tips">Please enter your url and click the submit button.</p>
+            </div>
+
+            <form v-on:submit.prevent="onSubmit">
+                <v-text-field autofocus type="url" v-model="url" placeholder="Url here."></v-text-field>
+                <div class="text-xs-center">
+                    <v-btn round primary light large type="submit" v-bind:loading="is_requesting">Submit to shorten</v-btn>
+                </div>
+            </form>
+
+            <div class="text-xs-center" v-if="res_url">
+                <p class="tips">Short url is here:</p>
+                <a class="blue--text" target="_blank" v-bind:href="res_url" v-text="res_url"></a>
+            </div>
         </div>
-    </div>
-
-    <a href="https://github.com/JamaisMagic/namie.cc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    </template>
 </div>
 <% commonjsscript %>
 <% jsscript %>
