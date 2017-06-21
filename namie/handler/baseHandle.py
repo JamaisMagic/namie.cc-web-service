@@ -24,7 +24,8 @@ class BaseHandler(tornado.web.RequestHandler):
             self.body_dict = dict()
 
     def prepare(self):
-        self.add_access_control()
+        # self.add_access_control()
+        pass
 
     @gen.coroutine
     def options(self):

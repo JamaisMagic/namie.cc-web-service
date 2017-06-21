@@ -3,8 +3,7 @@
  */
 
 import * as axios from 'axios';
-import {default as md5} from 'blueimp-md5';
-require('es6-promise').polyfill();
+import { default as md5 } from 'blueimp-md5';
 
 let mAuthKey = '';
 

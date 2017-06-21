@@ -8,8 +8,6 @@ import {URL_PATH} from './modules/request';
 
 const mAxios = getAxiosInstance();
 
-console.log(mCommon.VERSION);
-
 new Vue({
     el: '#app',
     data() {
@@ -27,7 +25,7 @@ new Vue({
         },
         shorten(url) {
             const self = this;
-            mAxios.post(URL_PATH.SHORTEN, {url})
+            mAxios.post(mCommon.util.getNamieApi(URL_PATH.SHORTEN), {url})
                 .then(res => res.data || {})
                 .then(data => {
                     if (data.code === 0) {
