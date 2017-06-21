@@ -24,18 +24,11 @@ class BaseHandler(tornado.web.RequestHandler):
             self.body_dict = dict()
 
     def prepare(self):
-        # self.add_access_control()
         pass
 
     @gen.coroutine
     def options(self):
         self.finish()
-
-    def add_access_control(self):
-        self.add_header('Access-Control-Allow-Origin', '*')
-        self.add_header('Access-Control-Request-Method', 'GET, POST, OPTIONS, HEAD')
-        self.add_header('Access-Control-Accept-Headers', 'Content-Type, X-Requested-With, Origin, Accept, Authorization')
-        self.add_header('Access-Control-Expose-Headers', 'Date')
 
     def res_success(self, data):
         self.result_data['code'] = 0
