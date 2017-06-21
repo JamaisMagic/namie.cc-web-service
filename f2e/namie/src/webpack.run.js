@@ -88,12 +88,6 @@ module.exports.run = (subjectProjectPath, sourceNames, callback) => {
                 .pipe(inlinesource())
                 .pipe(htmlmin({collapseWhitespace: true}))
                 .pipe(gulp.dest(myConfig.output.path))
-                .pipe(gulp.dest(() => {
-                    if (/\/m\/subject\/index/.test(subjectProjectPath)) {
-                        return buildConfig.dist_root;
-                    }
-                    return myConfig.output.path;
-                }))
                 .on('end', function () {
                     if (index === sourceNames.length - 1) {
                         console.log('build ended start callback');

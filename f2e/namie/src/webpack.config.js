@@ -10,9 +10,7 @@ const nib = require('nib');
 const buildConfig = require('./build_config.js');
 
 module.exports = {
-    entry: {
-
-    },
+    entry: {},
     output: {
         path: '',
         publicPath: '',
@@ -31,13 +29,27 @@ module.exports = {
                                 js: {
                                     loader: 'babel-loader',
                                     options: {
-                                        presets: ['es2015']
+                                        presets: [
+                                            ['env', {
+                                                targets: {
+                                                    "browsers": ["last 2 versions"]
+                                                }
+                                            }]
+                                        ],
+                                        plugins: ["transform-runtime"]
                                     }
                                 },
                                 babel: {
                                     loader: 'babel-loader',
                                     options: {
-                                        presets: ['es2015']
+                                        presets: [
+                                            ['env', {
+                                                targets: {
+                                                    "browsers": ["last 2 versions"]
+                                                }
+                                            }]
+                                        ],
+                                        plugins: ["transform-runtime"]
                                     }
                                 },
                                 stylus: ExtractTextPlugin.extract({
@@ -122,7 +134,14 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['es2015']
+                            presets: [
+                                ['env', {
+                                    targets: {
+                                        "browsers": ["last 2 versions"]
+                                    }
+                                }]
+                            ],
+                            plugins: ["transform-runtime"]
                         }
                     }
                 ]
@@ -145,7 +164,8 @@ module.exports = {
         extensions: ['.js', '.json', '.vue'],
         modules: [
             path.join(__dirname, "src"),
-            "node_modules"
+            "node_modules",
+            "web_modules"
         ],
         alias: {vue: 'vue/dist/vue.min.js'}
     },
