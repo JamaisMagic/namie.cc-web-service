@@ -22,6 +22,7 @@ gulp.task('build', function(callback) {
 
 gulp.task('default', ['build']);
 gulp.task('dev', ['build']);
+gulp.task('namie', ['build']);
 
 gulp.task('watch', function() {
     gulp.watch(['src/**'], ['default'], function() {

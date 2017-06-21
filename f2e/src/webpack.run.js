@@ -8,16 +8,22 @@ const htmlmin = require('gulp-htmlmin');
 const inlinesource = require('gulp-inline-source');
 const webpackConfig = require('./webpack.config.js');
 const buildConfig = require('./build_config.js');
-const distRoot = buildConfig.dist_root;
+let distRoot = buildConfig.dist_root;
+let publicPathPrefix = buildConfig.public_path_prefix;
 const ASSETS_COMMON = buildConfig.ASSETS_COMMON_NAME;
+const isBuildForNamie = process.argv[2] === 'namie' || process.argv[3] === 'namie';
 
+if (isBuildForNamie) {
+    distRoot = buildConfig.dist_root_namie;
+    publicPathPrefix = buildConfig.public_path_prefix_namie;
+}
 
 module.exports.run = (subjectProjectPath, sourceNames, callback) => {
     let src = path.resolve(subjectProjectPath, 'src');
 
     let myConfig = webpackConfig;
     myConfig.output.path = distRoot + subjectProjectPath.replace(buildConfig.srcRoot, '');
-    myConfig.output.publicPath = buildConfig.public_path_prefix + subjectProjectPath.replace(buildConfig.srcRoot, '') + '/';
+    myConfig.output.publicPath = publicPathPrefix + subjectProjectPath.replace(buildConfig.srcRoot, '') + '/';
 
     sourceNames.forEach(function (item) {
         myConfig.entry[item] = path.resolve(src, 'script', item + '.js');
@@ -89,8 +95,8 @@ module.exports.run = (subjectProjectPath, sourceNames, callback) => {
                 .pipe(htmlmin({collapseWhitespace: true}))
                 .pipe(gulp.dest(myConfig.output.path))
                 .pipe(gulp.dest(() => {
-                    if (/\/m\/subject\/index/.test(subjectProjectPath)) {
-                        return buildConfig.dist_root;
+                    if (/\/m\/subject\/index/.test(subjectProjectPath) && !isBuildForNamie) {
+                        return distRoot;
                     }
                     return myConfig.output.path;
                 }))
