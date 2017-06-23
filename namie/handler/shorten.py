@@ -1,14 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import random
-import tornado.web
-import tornado.gen as gen
 import tornado
-import time
-import logging
-import json
+import tornado.web
+import tornado.gen
 import validators
+import logging
 
 from ..lib.base62 import Base62
 from .. import config
@@ -18,7 +15,7 @@ from .. dal.shorten import Dal
 
 class ShortenHandler(BaseHandler):
     PRE_FIX = 'cc_namie_url_short_'
-    @gen.coroutine
+    @tornado.gen.coroutine
     def post(self):
         url = (self.body_dict['url'] or '').strip()
         ip = self.request.remote_ip

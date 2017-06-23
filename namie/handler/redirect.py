@@ -3,8 +3,9 @@
 """ Handlers
 """
 
+import tornado
 import tornado.web
-import tornado.gen as gen
+import tornado.gen
 import logging
 
 from ..lib.base62 import Base62
@@ -15,7 +16,7 @@ __author__ = 'Jamais'
 
 
 class RedirectHandler(BaseHandler):
-    @gen.coroutine
+    @tornado.gen.coroutine
     def get(self, url_id):
         self.add_header('cache-control', 'no-cache, no-store, max-age=0, must-revalidate')
         self.add_header('pragma', 'no-cache')
@@ -25,6 +26,7 @@ class RedirectHandler(BaseHandler):
 
         if data_url is None:
             self.finish('No such url.')
+            logging.warning('redirect url not exists: %s', url_id)
             return
 
         self.redirect(data_url, False, 301)

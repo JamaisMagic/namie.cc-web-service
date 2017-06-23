@@ -1,15 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import logging
+import tornado
 import tornado.web
-import tornado.gen as gen
+import tornado.gen
 from jinja2 import Environment, PackageLoader
+import logging
 
-from . import status
 from . import shorten
 from . import redirect
-from . import test
 
 __author__ = 'Jamais'
 
@@ -17,7 +16,7 @@ template_env = Environment(loader=PackageLoader('namie', '../static'))
 
 
 class IndexHandler(tornado.web.RequestHandler):
-    @gen.coroutine
+    @tornado.gen.coroutine
     def get(self):
         template = template_env.get_template('m/subject/index/index.html')
         self.finish(template.render())

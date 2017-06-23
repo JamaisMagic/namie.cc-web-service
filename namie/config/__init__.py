@@ -15,7 +15,7 @@ if TEST not in ('OFFICIAL', 'TEST'):
     raise Exception("TEST type error: %s" % TEST)
 
 if TEST == "OFFICIAL":
-    HOST = "http://namie.cc"
+    HOST = "https://namie.cc"
 else:
     HOST = "http://test.namie.cc"
 

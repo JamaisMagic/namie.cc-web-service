@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import json
-import logging
 import tornado
 import tornado.web
-import tornado.gen as gen
+import tornado.gen
+import json
+import logging
 
 
 __author__ = 'Jamais'
@@ -25,10 +25,6 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def prepare(self):
         pass
-
-    @gen.coroutine
-    def options(self):
-        self.finish()
 
     def res_success(self, data):
         self.result_data['code'] = 0

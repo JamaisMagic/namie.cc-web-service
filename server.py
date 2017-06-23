@@ -6,9 +6,9 @@ import json
 import logging
 from os import path
 import argparse
+import tornado
 import tornado.httpserver
 import tornado.ioloop
-import tornado.options
 import tornado.web
 
 from namie import config
@@ -20,7 +20,6 @@ __author__ = 'Jamais'
 
 handlers = [
     (r"/", hdl.IndexHandler),
-    (r"/test/?", hdl.test.TestHandler),
     (r"/api/shorten/?", hdl.shorten.ShortenHandler),
     (r"/([0-9|a-z|A-Z]+/?)", hdl.redirect.RedirectHandler)
 ]
