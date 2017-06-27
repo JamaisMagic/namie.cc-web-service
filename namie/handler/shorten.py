@@ -15,9 +15,10 @@ from .. dal.shorten import Dal
 
 class ShortenHandler(BaseHandler):
     PRE_FIX = 'cc_namie_url_short_'
+
     @tornado.gen.coroutine
     def post(self):
-        url = (self.body_dict['url'] or '').strip()
+        url = self.body_dict.get('url', '').strip() or self.get_body_argument('url', '')
         ip = self.request.remote_ip
         rdbc = self.conn.rdbc
 

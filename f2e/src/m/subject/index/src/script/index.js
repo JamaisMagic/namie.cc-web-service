@@ -1,4 +1,3 @@
-import 'cc.namie.jamais.m/src/style/common/common.styl';
 import '../style/common.styl';
 import '../style/index.styl';
 import Vue from 'vue';
@@ -15,7 +14,7 @@ const mAxios = getAxiosInstance();
 Vue.use(Vuetify);
 
 new Vue({
-    el: '#app',
+    el: '#vue_app',
     data() {
         return {
             is_requesting: true,

@@ -18,13 +18,16 @@ class BaseHandler(tornado.web.RequestHandler):
             'msg': '',
             'data': None
         }
-        try:
-            self.body_dict = json.loads(self.request.body)
-        except ValueError, e:
-            self.body_dict = dict()
 
     def prepare(self):
-        pass
+        content_type = self.request.headers.get('Content-Type', '')
+        if content_type.startswith('application/json'):
+            try:
+                self.body_dict = json.loads(self.request.body)
+            except ValueError, e:
+                self.body_dict = dict()
+        else:
+            self.body_dict = dict()
 
     def res_success(self, data):
         self.result_data['code'] = 0
