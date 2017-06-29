@@ -5,6 +5,7 @@ import tornado
 import tornado.web
 import tornado.gen
 import validators
+import re
 import logging
 
 from ..lib.base62 import Base62
@@ -18,6 +19,11 @@ class ShortenHandler(BaseHandler):
 
     @tornado.gen.coroutine
     def post(self):
+        host = self.request.host
+        if not re.match(r'(?:[^/]*\.)?(namie\.(?:cc)|picoluna\.(?:com))(?::[0-9]+)?$', host):
+            self.set_status(403)
+            self.finish()
+            return
         url = self.body_dict.get('url', '').strip() or self.get_body_argument('url', '')
         ip = self.request.remote_ip
         rdbc = self.conn.rdbc
