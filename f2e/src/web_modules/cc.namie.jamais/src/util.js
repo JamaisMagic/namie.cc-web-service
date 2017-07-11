@@ -8,7 +8,7 @@ class Util {
     }
 
     isTest() {
-        return !(window.location.hostname === 'jamais.namie.cc');
+        return /(test\.namie\.cc|test\.jamais\.namie\.cc|localhost)/.test(window.location.hostname);
     }
 
     getNamieApi(path='/') {
