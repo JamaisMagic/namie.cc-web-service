@@ -9,6 +9,7 @@ import logging
 
 from . import shorten
 from . import redirect
+import sse as sse
 
 __author__ = 'Jamais'
 
