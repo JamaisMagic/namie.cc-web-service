@@ -44,6 +44,7 @@ new Vue({
         },
         handleData(event) {
             console.log(event);
+            // maybe check event.origin for security.
             let jsonStr = event.data;
             let obj = {};
             try {

@@ -20,11 +20,18 @@ class IntervalHdl(tornado.web.RequestHandler):
     def prepare(self):
         self.set_header('Content-Type', 'text/event-stream')
         self.set_header('Cache-Control', 'no-cache')
+        self.set_header('Connection', 'keep-alive')
         self.set_header('X-Accel-Buffering', 'no')
 
     @tornado.gen.coroutine
     def get(self):
         count = 0
+        lastid = self.request.headers.get('Last-Event-ID', 0)
+
+        if lastid >= 5:
+            self.set_status(204)
+            raise self.finish()
+
         while True:
             count = count + 1
             event = 'pyevent'
@@ -34,7 +41,7 @@ class IntervalHdl(tornado.web.RequestHandler):
 
             self.write(
                 'id:{}\nevent:{}\ndata:{}\n\n'.format(
-                    datetime.datetime.now(),
+                    count,
                     event,
                     json.dumps({
                         'error': mod,
@@ -47,4 +54,4 @@ class IntervalHdl(tornado.web.RequestHandler):
                 raise self.finish()
 
             self.flush()
-            yield tornado.gen.sleep(10)
+            yield tornado.gen.sleep(5)
