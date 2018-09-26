@@ -25,7 +25,7 @@ if APP_ENV not in ('development', 'production'):
 if APP_ENV == 'PRODUCTION':
     HOST = 'https://namie.cc'
 else:
-    HOST = 'http://test.namie.cc'
+    HOST = 'http://qa.namie.cc'
 
 DB = {
     'HOST': MYSQL_HOST,

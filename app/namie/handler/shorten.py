@@ -20,7 +20,7 @@ class ShortenHandler(BaseHandler):
     @tornado.gen.coroutine
     def post(self):
         origin = self.request.headers.get('Origin', '')
-        match = re.match(r'^https?://(?:[^/]*\.)?(namie\.(?:cc)|picoluna\.(?:com))(?::[0-9]+)?$', origin)
+        match = re.match(r'^https?://(?:[^/]*\.)?(namie\.(?:cc)|picoluna\.(?:com)|localhost)(?::[0-9]+)?$', origin)
         if not match:
             self.set_status(403)
             self.finish()
