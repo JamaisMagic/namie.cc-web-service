@@ -1,0 +1,4 @@
+@function px2rem($pxval) {
+  $size: $pxval / 750px;
+  @return #{$size}rem
+}
