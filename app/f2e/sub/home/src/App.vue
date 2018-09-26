@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-    <v-app>
+  <v-app>
       <v-toolbar app class="blue" light v-bind:fixed="true">
         <v-toolbar-side-icon light></v-toolbar-side-icon>
         <v-toolbar-title class="white--text">www.namie.cc</v-toolbar-title>
@@ -18,7 +17,6 @@
         </v-container>
       </v-content>
     </v-app>
-  </div>
 </template>
 
 <style lang="scss">
