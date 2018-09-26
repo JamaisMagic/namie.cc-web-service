@@ -1,7 +1,0 @@
-{
-  "name": "cc.namie.jamais",
-  "version": "0.0.1",
-  "description": "cc.namie.jamais",
-  "private": true,
-  "main": "./src/main.js"
-}
