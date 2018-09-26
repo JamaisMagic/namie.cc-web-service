@@ -1,2 +1,0 @@
-webpackJsonp([1],{12:function(e,t){},14:function(e,t,n){"use strict";function u(e){return e&&e.__esModule?e:{default:e}}n(3),n(2),n(12);var o=n(5),i=u(o),s=n(6),a=u(s),c=n(1),f=(u(c),n(4)),d=u(f);i.default.use(a.default),new i.default({el:"#app",data:function(){return{is_requesting:!0}},created:function(){},mounted:function(){this.is_requesting=!1},components:{GhIcon:d.default},methods:{}})}},[14]);
-//# sourceMappingURL=index.bundle.js.map?hash=9d5cfac0c7
