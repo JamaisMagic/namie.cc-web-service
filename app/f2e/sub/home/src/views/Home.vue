@@ -5,7 +5,8 @@
         </div>
 
         <form v-on:submit.prevent="onSubmit">
-            <v-text-field autofocus type="url" v-model="longUrl" placeholder="Url here."></v-text-field>
+            <v-text-field autofocus required type="url" placeholder="Url here."
+                          v-model="longUrl" v-on:invalid.prevent="onUrlInvalid"></v-text-field>
             <div class="text-xs-center">
                 <v-btn round large color="info" type="submit" v-bind:loading="isRequesting">Submit to shorten</v-btn>
             </div>
@@ -23,6 +24,7 @@
 </template>
 
 <script>
+    import isJs from 'is_js';
     import {shorten} from '../utils/request';
 
 
@@ -32,7 +34,7 @@
             return {
                 longUrl: '',
                 isRequesting: false,
-                shortUrl: ''
+                shortUrl: '',
             };
         },
         components: {
@@ -40,6 +42,11 @@
         },
         methods: {
             async onSubmit() {
+                if (!this.longUrl || !isJs.url(this.longUrl)) {
+                    this.emitToast('Please enter a URL.');
+                    return;
+                }
+
                 this.isRequesting = true;
                 let response = await shorten(this.longUrl);
                 this.isRequesting = false;
@@ -49,7 +56,13 @@
                     return this.shortUrl = data.data.url;
                 }
 
-                alert('error');
+                this.emitToast('There is something wrong, please try again later.');
+            },
+            onUrlInvalid(event) {
+                this.emitToast('Please enter a URL.');
+            },
+            emitToast(text) {
+                this.$emit('showAlert', text);
             }
         }
     }

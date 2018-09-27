@@ -13,17 +13,22 @@
 
         <v-content>
             <v-container fluid>
-                <router-view/>
+                <router-view v-on:showAlert="showAlert"/>
             </v-container>
         </v-content>
+
+        <v-snackbar v-model="showSnackbar">
+            {{ snackbarText }}
+            <v-btn color="pink" flat v-on:click="showSnackbar = false">Close</v-btn>
+        </v-snackbar>
     </v-app>
 </template>
 
 <style lang="scss">
     @import "~normalize-scss/sass/normalize";
+
     @include normalize();
     @import "./assets/style/util";
-    @import "~vuetify/dist/vuetify.css";
 
     html, body {
         box-sizing: border-box;
@@ -49,8 +54,20 @@
 <script>
     export default {
         name: 'App',
+        data() {
+            return {
+                showSnackbar: false,
+                snackbarText: ''
+            }
+        },
         components: {
             GhIcon: () => import('./components/gh_icon/GhIcon')
+        },
+        methods: {
+            showAlert(text) {
+                this.snackbarText = text;
+                this.showSnackbar = true;
+            }
         }
     }
 </script>
