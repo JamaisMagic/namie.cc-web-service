@@ -50,4 +50,12 @@ ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
 
 ### website
 * [namie.cc website](https://namie.cc/ "namie.cc website")
-* **due to the developing status of this project, the data of the website may be deleted at any time.**
+* **Due to the developing status of this project, the data of the website may be deleted at any time.**
+
+### docker
+If you want to use docker, you can also run docker compose directly.
+```bash
+bash run_docker_dev.sh up
+```
+
+To install docker and docker compose, visit the [official website](https://docs.docker.com/install/).
