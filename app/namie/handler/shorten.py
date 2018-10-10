@@ -7,6 +7,7 @@ import tornado.gen
 import validators
 import re
 import logging
+import hashlib
 
 from ..lib.base62 import Base62
 from .. import config
@@ -42,17 +43,27 @@ class ShortenHandler(BaseHandler):
             self.success(existed, url)
             return
 
-        last_row_id = Dal.insert_url(self.conn.dbc, url, ip)
-        base62_encoded = Base62.encode(last_row_id)
-        res_url_id = base62_encoded
-        if len(base62_encoded) < 6:
-            res_url_id = base62_encoded.zfill(6)
+        ua = self.request.headers.get('User-Agent', '')
 
-        self.success(res_url_id, url)
-        rdbc.setex(self.PRE_FIX + url, 3600 * 24 * 7, res_url_id)
+        url_table_index = str(ShortenHandler.base16_to_base10(ShortenHandler.calculate_md5(url)))[0:1]
+        url_table_name = 'url_%s' % url_table_index
+
+        last_row_id = Dal.insert_url_with_table(self.conn.dbc, url_table_name, url, ip, ua)
+        base62_encoded = Base62.encode(int(str(last_row_id) + str(url_table_index)))
+
+        self.success(base62_encoded, url)
+        rdbc.setex(self.PRE_FIX + url, 3600 * 24 * 7, base62_encoded)
 
     def success(self, url_id, original_url):
         self.res_success({
             'url': config.HOST + '/' + url_id,
             'original': original_url
         })
+
+    @staticmethod
+    def calculate_md5(string):
+        return hashlib.md5(string).hexdigest()
+
+    @staticmethod
+    def base16_to_base10(num16):
+        return int(num16, 16)

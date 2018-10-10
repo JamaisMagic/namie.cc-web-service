@@ -25,9 +25,14 @@ class RedirectHandler(BaseHandler):
 
         rdbc = self.conn.rdbc
         redirect_id_base_10 = Base62.decode(url_id)
+        db_id = int(str(redirect_id_base_10)[0:-1])
+        table_index = str(redirect_id_base_10)[-1]
+        table_name = 'url_%s' % table_index
+
         data_url = rdbc.get(self.PREFIX + str(redirect_id_base_10))
+
         if data_url is None:
-            data_url = Dal.query_url(self.conn.dbc, redirect_id_base_10)
+            data_url = Dal.query_url_with_table(self.conn.dbc, table_name, db_id)
             if data_url is not None:
                 rdbc.setex(self.PREFIX + str(redirect_id_base_10), 3600 * 24 * 7, data_url)
 
@@ -36,4 +41,4 @@ class RedirectHandler(BaseHandler):
             logging.warning('redirect url not exists: %s', url_id)
             return
 
-        self.redirect(data_url, False, 301)
+        self.redirect(data_url, False, 307)
