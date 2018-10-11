@@ -16,7 +16,7 @@ services:
       MYSQL_PORT: 3306
       MYSQL_USER: "root"
       MYSQL_PWD: "123456"
-      MYSQL_DB_NAME: "cc_namie_normal"
+      MYSQL_DB_NAME: "www_namie_cc"
     expose:
       - "8010"
     ports:

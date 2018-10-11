@@ -16,7 +16,7 @@ MYSQL_HOST = environ.get('MYSQL_HOST', '127.0.0.1')
 MYSQL_PORT = environ.get('MYSQL_PORT', 3306)
 MYSQL_USER = environ.get('MYSQL_USER', 'root')
 MYSQL_PWD = environ.get('MYSQL_PWD', '123456')
-MYSQL_DB_NAME = environ.get('MYSQL_DB_NAME', 'cc_namie_normal')
+MYSQL_DB_NAME = environ.get('MYSQL_DB_NAME', 'www_namie_cc')
 
 
 if APP_ENV not in ('development', 'production'):
