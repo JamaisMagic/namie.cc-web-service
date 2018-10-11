@@ -50,9 +50,13 @@ class ShortenHandler(BaseHandler):
 
         last_row_id = Dal.insert_url_with_table(self.conn.dbc, url_table_name, url, ip, ua)
         base62_encoded = Base62.encode(int(str(last_row_id) + str(url_table_index)))
+        res_url_id = base62_encoded
 
-        self.success(base62_encoded, url)
-        rdbc.setex(self.PRE_FIX + url, 3600 * 24 * 7, base62_encoded)
+        if len(base62_encoded) < 6:
+            res_url_id = base62_encoded.zfill(6)
+
+        self.success(res_url_id, url)
+        rdbc.setex(self.PRE_FIX + url, 3600 * 24 * 7, res_url_id)
 
     def success(self, url_id, original_url):
         self.res_success({
