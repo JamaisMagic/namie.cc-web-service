@@ -1,4 +1,4 @@
-# A simple url shortener
+# A url shortener written in python
 
 ### environment
 ubuntu 16.04 lts, python 2.7.12, mysql 5.7.18, redis 3.0.6
@@ -70,7 +70,7 @@ sudo crontab -e
 > Using ipv6only=on ensures that the IPv6 listen directive will only bind to IPv6 and not automatically to IPv4 as well.
 
 ### website
-* [namie.cc website](https://namie.cc/ "namie.cc website")
+* [www.namie.cc website](https://www.namie.cc/ "www.namie.cc website")
 * **Due to the developing status of this project, the data of the website may be deleted at any time.**
 
 ### docker
