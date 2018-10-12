@@ -19,6 +19,12 @@
             <v-card-text class="text-xs-center">
                 <a class="blue--text" target="_blank" v-bind:href="shortUrl" v-text="shortUrl"></a>
             </v-card-text>
+
+            <v-layout align-center justify-center row>
+                <v-flex xs1 text-xs-center>
+                    <v-btn small color="info" v-on:click="onCopyClick">Click to copy</v-btn>
+                </v-flex>
+            </v-layout>
         </v-card>
     </div>
 </template>
@@ -63,6 +69,22 @@
             },
             emitToast(text) {
                 this.$emit('showAlert', text);
+            },
+            onCopyClick() {
+                if (!this.shortUrl) {
+                    return;
+                }
+                if (window.navigator.clipboard) {
+                    window.navigator.clipboard.writeText(this.shortUrl)
+                        .then(() => {
+                            this.emitToast('Copied.');
+                        })
+                        .catch(err => {
+                            this.emitToast('There is something wrong, please copy the url manually.');
+                        });
+                    return;
+                }
+                this.emitToast('Your browser does not support clipboard api, please copy the url manually.');
             }
         }
     }

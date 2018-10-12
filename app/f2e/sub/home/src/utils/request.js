@@ -7,12 +7,10 @@ const mInstance = axios.create({
 });
 
 mInstance.interceptors.request.use(config => {
-    console.log('request', config);
    return config;
 });
 
 mInstance.interceptors.response.use(config => {
-    console.log('response', config);
    return config;
 });
 
