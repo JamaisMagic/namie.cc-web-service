@@ -21,7 +21,7 @@
             </v-card-text>
 
             <v-layout align-center justify-center row>
-                <v-flex xs1 text-xs-center>
+                <v-flex xs12 text-xs-center>
                     <v-btn small color="info" v-on:click="onCopyClick">Click to copy</v-btn>
                 </v-flex>
             </v-layout>
