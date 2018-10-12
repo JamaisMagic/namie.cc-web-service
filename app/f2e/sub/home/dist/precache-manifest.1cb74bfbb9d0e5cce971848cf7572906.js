@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "570eb83859dc23dd0eec423a49e147fe",
-    "url": "/sub/home/dist/fonts/MaterialIcons-Regular.570eb838.woff2"
+    "revision": "e79bfd88537def476913f3ed52f4f4b3",
+    "url": "/sub/home/dist/fonts/MaterialIcons-Regular.e79bfd88.eot"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
@@ -20,16 +20,16 @@ self.__precacheManifest = [
     "url": "/sub/home/dist/js/app.b9ca0b86.js"
   },
   {
-    "revision": "409e1d62b3628842ec503c561bf36722",
+    "revision": "573ff6b4ca5c177c4fe4c330a57fc6a2",
     "url": "/sub/home/dist/index.html"
-  },
-  {
-    "revision": "e79bfd88537def476913f3ed52f4f4b3",
-    "url": "/sub/home/dist/fonts/MaterialIcons-Regular.e79bfd88.eot"
   },
   {
     "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
     "url": "/sub/home/dist/fonts/MaterialIcons-Regular.a37b0c01.ttf"
+  },
+  {
+    "revision": "570eb83859dc23dd0eec423a49e147fe",
+    "url": "/sub/home/dist/fonts/MaterialIcons-Regular.570eb838.woff2"
   },
   {
     "revision": "012cf6a10129e2275d79d6adac7f3b02",
