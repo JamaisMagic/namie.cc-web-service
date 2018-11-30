@@ -20,7 +20,7 @@ class SetCookieHandler(BaseHandler):
     @tornado.gen.coroutine
     def post(self):
         tornado_cookie = self.get_cookie('tornado_cookie', '')
-        logging.warnings('tornado_cookie: %s', tornado_cookie)
+        logging.warning('tornado_cookie: %s', tornado_cookie)
         self.set_cookie('tornado_cookie', str(random.random()))
         self.success()
 
