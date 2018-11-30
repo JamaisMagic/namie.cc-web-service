@@ -21,7 +21,8 @@ export function requestWithPreflight() {
             url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS',
         }),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': new Date().toString(),
         }
     })
         .then(res => res.json())
