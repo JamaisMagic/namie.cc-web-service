@@ -19,8 +19,9 @@ from .. dal.shorten import Dal
 class SetCookieHandler(BaseHandler):
     @tornado.gen.coroutine
     def post(self):
-        tornadoCookie = self.get_cookie('tornadoCookie', '')
-        self.set_cookie('tornadoCookie', random.random())
+        tornado_cookie = self.get_cookie('tornado_cookie', '')
+        logging.debug('tornado_cookie: %s', tornado_cookie)
+        self.set_cookie('tornado_cookie', str(random.random()))
         self.success()
 
     @tornado.gen.coroutine
