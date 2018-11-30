@@ -9,6 +9,7 @@ import logging
 
 from . import shorten
 from . import redirect
+from . import setCookie
 import sse as sse
 
 __author__ = 'Jamais'

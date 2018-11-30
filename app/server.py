@@ -22,6 +22,7 @@ __author__ = 'Jamais'
 handlers = [
     (r"/", hdl.IndexHandler),
     (r"/api/shorten/?", hdl.shorten.ShortenHandler),
+    (r"/api/cookie/?", hdl.setCookie.SetCookieHandler),
     (r"/api/sse/demon/interval/?", hdl.sse.demon.IntervalHdl),
     (r"/([0-9|a-z|A-Z]+/?)", hdl.redirect.RedirectHandler)
 ]
