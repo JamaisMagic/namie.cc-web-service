@@ -23,6 +23,10 @@ class SetCookieHandler(BaseHandler):
         self.set_cookie('tornadoCookie', random.random())
         self.success()
 
+    @tornado.gen.coroutine
+    def get(self):
+        self.success()
+
     def success(self):
         self.res_success({
 
