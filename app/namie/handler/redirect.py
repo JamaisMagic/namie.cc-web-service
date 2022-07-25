@@ -53,8 +53,8 @@ class RedirectHandler(BaseHandler):
     @staticmethod
     def is_allow_url(url):
         parse_re = urlparse(url)
-        if parse_re.scheme is not 'https':
-          return False
+        if parse_re.scheme != 'https':
+              return False
         
         if parse_re.netloc not in config.ALLOW_URL_HOSTNAME:
             return False
