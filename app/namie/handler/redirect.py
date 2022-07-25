@@ -7,7 +7,9 @@ import tornado
 import tornado.web
 import tornado.gen
 import logging
+from urlparse import urlparse
 
+from .. import config
 from ..lib.base62 import Base62
 from baseHandle import BaseHandler
 from ..dal.redirect import Dal
@@ -40,5 +42,21 @@ class RedirectHandler(BaseHandler):
             self.finish('No such url.')
             logging.warning('redirect url not exists: %s', url_id)
             return
+        
+        if not RedirectHandler.is_allow_url(data_url):
+            self.finish('Not allowed hostname.')
+            logging.warning('Not allowed hostname: %s', data_url)
+            return
 
         self.redirect(data_url, False, 307)
+    
+    @staticmethod
+    def is_allow_url(url):
+        parse_re = urlparse(url)
+        if parse_re.scheme is not 'https':
+          return False
+        
+        if parse_re.netloc not in config.ALLOW_URL_HOSTNAME:
+            return False
+        
+        return True    

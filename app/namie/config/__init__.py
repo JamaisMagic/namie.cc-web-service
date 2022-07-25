@@ -41,3 +41,18 @@ RDB = {
     'PWD': '',
     'DB': 0,
 }
+
+ALLOW_URL_HOSTNAME = (
+    'google.com',
+    'www.google.com',
+    'youtube.com',
+    'www.youtube.com',
+    'baidu.com',
+    'www.baidu.com',
+    'twitter.com',
+    'www.twitter.com',
+    'namie.cc',
+    'www.namie.cc',
+    'github.com',
+    'www.github.com',
+)
