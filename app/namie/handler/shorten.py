@@ -8,6 +8,7 @@ import validators
 import re
 import logging
 import hashlib
+from urlparse import urlparse
 
 from ..lib.base62 import Base62
 from .. import config
@@ -36,6 +37,10 @@ class ShortenHandler(BaseHandler):
 
         if not validators.url(url):
             self.res_fail(1, 'Not a url')
+            return
+        
+        if not ShortenHandler.is_allow_url(url):
+            self.res_fail(1, 'Not allowed hostname')
             return
 
         existed = rdbc.get(self.PRE_FIX + url)
@@ -71,3 +76,15 @@ class ShortenHandler(BaseHandler):
     @staticmethod
     def base16_to_base10(num16):
         return int(num16, 16)
+    
+    @staticmethod
+    def is_allow_url(url):
+        parse_re = urlparse(url)
+        if parse_re.scheme is not 'https':
+          return False
+        
+        if parse_re.netloc not in config.ALLOW_URL_HOSTNAME:
+            return False
+        
+        return True
+        
