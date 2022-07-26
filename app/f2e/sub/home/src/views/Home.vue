@@ -26,13 +26,35 @@
                 </v-flex>
             </v-layout>
         </v-card>
+
+        <v-card
+          class="mx-auto"
+          max-width="300"
+          tile
+        >
+          <v-list>
+            <v-subheader>For security reason, this service only support the following hostnames.</v-subheader>
+            <v-list-item-group
+              v-model="selectedItem"
+              color="primary"
+            >
+              <v-list-item
+                v-for="(item) in urlWhiteList"
+                :key="item"
+              >
+                <v-list-item-content>
+                  <v-list-item-title v-text="item"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-card>
     </div>
 </template>
 
 <script>
     import isJs from 'is_js';
-    import {shorten} from '../utils/request';
-
+    import { shorten, getHostnameWhiteList} from '../utils/request';
 
     export default {
         name: 'home',
@@ -41,12 +63,22 @@
                 longUrl: '',
                 isRequesting: false,
                 shortUrl: '',
+                urlWhiteList: [],
             };
         },
         components: {
 
         },
+        mounted() {
+            this.getHostnameWhiteList();
+        },
         methods: {
+            async getHostnameWhiteList() {
+                const response = await getHostnameWhiteList();
+                if (response && response.status === 200 && response.data.code === 0) {
+                    this.urlWhiteList = response.data.data.hostname_list || [];
+                }
+            },
             async onSubmit() {
                 if (!this.longUrl || !isJs.url(this.longUrl)) {
                     this.emitToast('Please enter a URL.');
