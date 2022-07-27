@@ -1,12 +1,12 @@
 <template>
     <div class="page-home">
         <div class="text-xs-center">
-            Please enter your url and click the submit button.
+            Please enter an url and click the submit button.
         </div>
 
         <form v-on:submit.prevent="onSubmit">
-            <v-text-field autofocus required type="url" placeholder="Url here."
-                          v-model="longUrl" v-on:invalid.prevent="onUrlInvalid"></v-text-field>
+            <v-text-field autofocus type="url" :placeholder="'Example: ' + urlExample"
+                          v-model.trim="longUrl" v-on:invalid.prevent="onUrlInvalid"></v-text-field>
             <div class="text-xs-center">
                 <v-btn round large color="info" type="submit" v-bind:loading="isRequesting">Submit to shorten</v-btn>
             </div>
@@ -27,28 +27,19 @@
             </v-layout>
         </v-card>
 
-        <v-card
-          class="mx-auto"
-          max-width="300"
-          tile
-        >
-          <v-list>
-            <v-subheader>For security reason, this service only support the following hostnames.</v-subheader>
-            <v-list-item-group
-              v-model="selectedItem"
-              color="primary"
+        <v-list subheader>
+          <v-subheader>For security reason, this service only support the following hostnames.</v-subheader>
+          <template v-for="(item) in urlWhiteList">
+            <v-list-tile
+              @click=""
             >
-              <v-list-item
-                v-for="(item) in urlWhiteList"
-                :key="item"
-              >
-                <v-list-item-content>
-                  <v-list-item-title v-text="item"></v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
+              <v-list-tile-content>
+                <v-list-tile-sub-title>{{ item }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-list>
+        
     </div>
 </template>
 
@@ -64,6 +55,7 @@
                 isRequesting: false,
                 shortUrl: '',
                 urlWhiteList: [],
+                urlExample: 'https://www.google.com/',
             };
         },
         components: {
@@ -80,8 +72,12 @@
                 }
             },
             async onSubmit() {
+                if (!this.longUrl) {
+                    this.longUrl = this.urlExample;
+                }
+
                 if (!this.longUrl || !isJs.url(this.longUrl)) {
-                    this.emitToast('Please enter a URL.');
+                    this.emitToast('Please enter an URL.');
                     return;
                 }
 
@@ -97,7 +93,7 @@
                 this.emitToast('There is something wrong, please try again later.');
             },
             onUrlInvalid(event) {
-                this.emitToast('Please enter a URL.');
+                this.emitToast('Please enter an URL.');
             },
             emitToast(text) {
                 this.$emit('showAlert', text);
