@@ -8,8 +8,11 @@ import VTextField from 'vuetify/es5/components/VTextField';
 import VBtn from 'vuetify/es5/components/VBtn';
 import VAlert from 'vuetify/es5/components/VAlert';
 import VSnackbar from 'vuetify/es5/components/VSnackbar';
+import VSubheader from 'vuetify/es5/components/VSubheader';
 import * as VCard from 'vuetify/es5/components/VCard';
 import * as VGrid from 'vuetify/es5/components/VGrid';
+import * as VList from 'vuetify/es5/components/VList';
+import * as VItemGroup from 'vuetify/es5/components/VItemGroup';
 
 import App from './App.vue';
 import router from './router';
@@ -26,8 +29,11 @@ Vue.use(Vuetify, {
         VBtn,
         VAlert,
         VSnackbar,
+        VSubheader,
         ...VCard,
-        ...VGrid
+        ...VGrid,
+        ...VList,
+        ...VItemGroup,
     }
 });
 
