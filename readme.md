@@ -103,6 +103,8 @@ ALLOW_URL_HOSTNAME = (
 )
 ```
 
+The latest whitelist, check [this api](https://www.namie.cc/api/allowed_hostname/)
+
 ## Docker
 
 If you want to use docker, you can also run docker compose directly.
