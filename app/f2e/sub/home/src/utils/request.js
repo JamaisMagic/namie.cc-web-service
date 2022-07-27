@@ -24,3 +24,8 @@ export function shorten(longUrl) {
         url: longUrl
     })
 }
+
+export function getHostnameWhiteList() {
+    return mInstance.get('/api/allowed_hostname/')
+    .catch(error => ({}))
+}

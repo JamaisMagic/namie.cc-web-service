@@ -1,12 +1,12 @@
 <template>
     <div class="page-home">
         <div class="text-xs-center">
-            Please enter your url and click the submit button.
+            Please enter an url and click the submit button.
         </div>
 
         <form v-on:submit.prevent="onSubmit">
-            <v-text-field autofocus required type="url" placeholder="Url here."
-                          v-model="longUrl" v-on:invalid.prevent="onUrlInvalid"></v-text-field>
+            <v-text-field autofocus type="url" :placeholder="'Example: ' + urlExample"
+                          v-model.trim="longUrl" v-on:invalid.prevent="onUrlInvalid"></v-text-field>
             <div class="text-xs-center">
                 <v-btn round large color="info" type="submit" v-bind:loading="isRequesting">Submit to shorten</v-btn>
             </div>
@@ -26,13 +26,26 @@
                 </v-flex>
             </v-layout>
         </v-card>
+
+        <v-list subheader>
+          <v-subheader>For security reason, this service only support the following hostnames.</v-subheader>
+          <template v-for="(item) in urlWhiteList">
+            <v-list-tile
+              @click=""
+            >
+              <v-list-tile-content>
+                <v-list-tile-sub-title>{{ item }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-list>
+        
     </div>
 </template>
 
 <script>
     import isJs from 'is_js';
-    import {shorten} from '../utils/request';
-
+    import { shorten, getHostnameWhiteList} from '../utils/request';
 
     export default {
         name: 'home',
@@ -41,15 +54,30 @@
                 longUrl: '',
                 isRequesting: false,
                 shortUrl: '',
+                urlWhiteList: [],
+                urlExample: 'https://www.google.com/',
             };
         },
         components: {
 
         },
+        mounted() {
+            this.getHostnameWhiteList();
+        },
         methods: {
+            async getHostnameWhiteList() {
+                const response = await getHostnameWhiteList();
+                if (response && response.status === 200 && response.data.code === 0) {
+                    this.urlWhiteList = response.data.data.hostname_list || [];
+                }
+            },
             async onSubmit() {
+                if (!this.longUrl) {
+                    this.longUrl = this.urlExample;
+                }
+
                 if (!this.longUrl || !isJs.url(this.longUrl)) {
-                    this.emitToast('Please enter a URL.');
+                    this.emitToast('Please enter an URL.');
                     return;
                 }
 
@@ -65,7 +93,7 @@
                 this.emitToast('There is something wrong, please try again later.');
             },
             onUrlInvalid(event) {
-                this.emitToast('Please enter a URL.');
+                this.emitToast('Please enter an URL.');
             },
             emitToast(text) {
                 this.$emit('showAlert', text);

@@ -25,9 +25,10 @@
 </template>
 
 <style lang="scss">
-    @import "~normalize-scss/sass/normalize";
+    @import '~modern-normalize/modern-normalize.css';
+    /* @import "~normalize-scss/sass/normalize"; */
 
-    @include normalize();
+    /* @include normalize(); */
     @import "./assets/style/util";
 
     html, body {
@@ -44,7 +45,7 @@
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 
-    @media screen and(max-width: 750px) {
+    @media screen and (max-width: 750px) {
         body {
             font-size: px2rem(32px);
         }
