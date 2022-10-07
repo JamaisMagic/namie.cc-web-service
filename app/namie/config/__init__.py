@@ -23,7 +23,7 @@ if APP_ENV not in ('development', 'production'):
     raise Exception("APP_ENV type error: %s" % APP_ENV)
 
 if APP_ENV == 'production':
-    HOST = 'https://namie.cc'
+    HOST = 'http://namie.cc'
 else:
     HOST = 'http://qa.namie.cc'
 
