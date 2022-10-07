@@ -79,7 +79,7 @@ sudo crontab -e
 
 ## Website
 
-* [www.namie.cc website](https://www.namie.cc/ "www.namie.cc website")
+* [www.namie.cc website](http://www.namie.cc/ "www.namie.cc website")
 * **Due to the developing status of this project, the data of the website may be deleted at any time.**
 
 ## Limitation and whitelist
@@ -103,7 +103,7 @@ ALLOW_URL_HOSTNAME = (
 )
 ```
 
-The latest whitelist, check [this api](https://www.namie.cc/api/allowed_hostname/)
+The latest whitelist, check [this api](http://www.namie.cc/api/allowed_hostname/)
 
 ## Docker
 
