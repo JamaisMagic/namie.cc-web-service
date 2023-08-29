@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import logging
@@ -14,7 +13,7 @@ class Helper(object):
     def execute(conn, sql, value_tuple=None):
         try:
             return conn.dbc.execute(sql, value_tuple)
-        except conn.dbc.OperationError, e:
+        except conn.dbc.OperationError as e:
             logging.warn('Dal Helper OperationError %s', str(e))
             conn.db_connect()
             return conn.dbc.execute(sql, value_tuple)

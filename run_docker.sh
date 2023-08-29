@@ -3,17 +3,19 @@
 
 git pull origin master:master && \
 if [ "$1" == "build" ]; then
-    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml build www_namie_cc
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml build namie_cc_web_service
 elif [ "$1" == "up" ]; then
-    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d --scale www_namie_cc=2 www_namie_cc
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d --scale namie_cc_web_service=2 namie_cc_web_service
 elif [ "$1" == "recreate" ]; then
-    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d --build --scale www_namie_cc=2 --force-recreate www_namie_cc
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml up -d --build --scale namie_cc_web_service=2 --force-recreate namie_cc_web_service
 elif [ "$1" == "restart" ]; then
-    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml restart www_namie_cc
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml restart namie_cc_web_service
 elif [ "$1" == "stop" ]; then
-    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml stop www_namie_cc
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml stop namie_cc_web_service
 elif [ "$1" == "rm" ]; then
-    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml rm www_namie_cc
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml rm namie_cc_web_service
+elif [ "$1" == "logs" ]; then
+    docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml logs namie_cc_web_service
 elif [ "$1" == "static" ]; then
     echo "Deploy static files."
 else

@@ -1,17 +1,14 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Handlers
 """
 
 import tornado
-import tornado.web
-import tornado.gen
 import logging
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from .. import config
 from ..lib.base62 import Base62
-from baseHandle import BaseHandler
+from .baseHandle import BaseHandler
 from ..dal.redirect import Dal
 
 __author__ = 'Jamais'
@@ -20,7 +17,6 @@ __author__ = 'Jamais'
 class RedirectHandler(BaseHandler):
     PREFIX = 'cc_namie_url_id_'
 
-    @tornado.gen.coroutine
     def get(self, url_id):
         self.add_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
         self.add_header('Pragma', 'no-cache')
