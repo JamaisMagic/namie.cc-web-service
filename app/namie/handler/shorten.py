@@ -42,7 +42,7 @@ class ShortenHandler(BaseHandler):
 
         existed = rdbc.get(self.PRE_FIX + url)
         if existed is not None:
-            self.success(existed, url)
+            self.success(existed.decode(), url)
             return
 
         ua = self.request.headers.get('User-Agent', '')
@@ -68,7 +68,7 @@ class ShortenHandler(BaseHandler):
 
     @staticmethod
     def calculate_md5(string):
-        return hashlib.md5(string).hexdigest()
+        return hashlib.md5(string.encode('utf-8')).hexdigest()
 
     @staticmethod
     def base16_to_base10(num16):

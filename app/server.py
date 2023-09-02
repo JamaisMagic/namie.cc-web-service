@@ -40,7 +40,7 @@ def make_app():
 async def main():
     app = make_app()
     app.listen(environ.get('APP_PORT', 8010))
-    logging.warn('Started with python: %s, locate: %s, TEST: %s' % (
+    logging.warning('Started with python: %s, locate: %s, TEST: %s' % (
         sys.version.split()[0],
         path.dirname(path.abspath(__file__)),
         config.APP_ENV))
