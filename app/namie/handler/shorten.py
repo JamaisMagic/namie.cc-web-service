@@ -35,10 +35,10 @@ class ShortenHandler(BaseHandler):
             self.res_fail(1, 'Not a url')
             return
         
-        if not ShortenHandler.is_allow_url(url):
-            self.res_fail(1, 'Not allowed hostname.')
-            logging.warning('Not allowed hostname: %s', url)
-            return
+        # if not ShortenHandler.is_allow_url(url):
+        #     self.res_fail(1, 'Not allowed hostname.')
+        #     logging.warning('Not allowed hostname: %s', url)
+        #     return
 
         existed = rdbc.get(self.PRE_FIX + url)
         if existed is not None:
