@@ -1,9 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import tornado
-import tornado.web
-import tornado.gen
 import json
 import random
 import datetime
@@ -23,7 +20,6 @@ class IntervalHdl(tornado.web.RequestHandler):
         self.set_header('Connection', 'keep-alive')
         self.set_header('X-Accel-Buffering', 'no')
 
-    @tornado.gen.coroutine
     def get(self):
         count = 0
         lastid = self.request.headers.get('Last-Event-ID', 0)
@@ -32,7 +28,7 @@ class IntervalHdl(tornado.web.RequestHandler):
             self.set_status(204)
             raise self.finish()
 
-        while True:
+        while False:
             count = count + 1
             event = 'pyevent'
             mod = round(random.random() * 10) % 2
@@ -54,4 +50,4 @@ class IntervalHdl(tornado.web.RequestHandler):
                 raise self.finish()
 
             self.flush()
-            yield tornado.gen.sleep(5)
+            # tornado.gen.sleep(5)

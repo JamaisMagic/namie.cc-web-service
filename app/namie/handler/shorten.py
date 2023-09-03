@@ -1,25 +1,21 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import tornado
-import tornado.web
-import tornado.gen
 import validators
 import re
 import logging
 import hashlib
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from ..lib.base62 import Base62
 from .. import config
-from baseHandle import BaseHandler
+from .baseHandle import BaseHandler
 from .. dal.shorten import Dal
 
 
 class ShortenHandler(BaseHandler):
-    PRE_FIX = 'cc_namie_url_short_'
+    PRE_FIX = 'cc_namie_url_short:'
 
-    @tornado.gen.coroutine
     def post(self):
         origin = self.request.headers.get('Origin', '')
         match = re.match(r'^https?://(?:[^/]*\.)?(namie\.(?:cc)|picoluna\.(?:com)|localhost)(?::[0-9]+)?$', origin)
@@ -39,14 +35,14 @@ class ShortenHandler(BaseHandler):
             self.res_fail(1, 'Not a url')
             return
         
-        if not ShortenHandler.is_allow_url(url):
-            self.res_fail(1, 'Not allowed hostname.')
-            logging.warning('Not allowed hostname: %s', url)
-            return
+        # if not ShortenHandler.is_allow_url(url):
+        #     self.res_fail(1, 'Not allowed hostname.')
+        #     logging.warning('Not allowed hostname: %s', url)
+        #     return
 
         existed = rdbc.get(self.PRE_FIX + url)
         if existed is not None:
-            self.success(existed, url)
+            self.success(existed.decode(), url)
             return
 
         ua = self.request.headers.get('User-Agent', '')
@@ -72,7 +68,7 @@ class ShortenHandler(BaseHandler):
 
     @staticmethod
     def calculate_md5(string):
-        return hashlib.md5(string).hexdigest()
+        return hashlib.md5(string.encode('utf-8')).hexdigest()
 
     @staticmethod
     def base16_to_base10(num16):

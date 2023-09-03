@@ -1,9 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import tornado
-import tornado.web
-import tornado.gen
 import json
 import logging
 
@@ -24,7 +21,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if content_type.startswith('application/json'):
             try:
                 self.body_dict = json.loads(self.request.body)
-            except ValueError, e:
+            except ValueError as e:
                 self.body_dict = dict()
         else:
             self.body_dict = dict()
