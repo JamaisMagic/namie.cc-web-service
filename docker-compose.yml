@@ -18,8 +18,8 @@ services:
       MYSQL_DB_NAME: "www_namie_cc"
     expose:
       - "8010"
-    ports:
-      - "8010-8011:8010"
+    # ports:
+    #   - "8010-8011:8010"
     networks:
       - webnet
     restart: always

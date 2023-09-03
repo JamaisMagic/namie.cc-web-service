@@ -41,3 +41,13 @@ sudo crontab -e
 ## Frontend
 
 Frontend and backend projects are separated, checkout this project for frontend project[namie.cc-web-app](https://github.com/JamaisMagic/namie.cc-web-app)
+
+## Misc
+
+Because the container does not map ports to the host, you should run a script in another container with the same network(--network webnet).
+For running a test script for api, checkout this image:[network-tools](https://hub.docker.com/r/jonlabelle/network-tools)
+For example.
+
+```bash
+docker run --rm -it --network webnet jonlabelle/network-tools curl -v namie_cc_web_service:8010
+```
