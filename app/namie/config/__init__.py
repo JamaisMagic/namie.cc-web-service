@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Config
 """
@@ -39,7 +38,7 @@ RDB = {
     'HOST': REDIS_HOST,
     'PORT': REDIS_PORT,
     'PWD': '',
-    'DB': 0,
+    'DB': 15,
 }
 
 ALLOW_URL_HOSTNAME = (

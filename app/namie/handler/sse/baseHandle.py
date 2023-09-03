@@ -1,9 +1,6 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import tornado
-import tornado.web
-import tornado.gen
 import json
 import logging
 

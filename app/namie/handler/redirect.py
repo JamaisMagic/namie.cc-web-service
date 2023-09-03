@@ -1,26 +1,22 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Handlers
 """
 
 import tornado
-import tornado.web
-import tornado.gen
 import logging
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from .. import config
 from ..lib.base62 import Base62
-from baseHandle import BaseHandler
+from .baseHandle import BaseHandler
 from ..dal.redirect import Dal
 
 __author__ = 'Jamais'
 
 
 class RedirectHandler(BaseHandler):
-    PREFIX = 'cc_namie_url_id_'
+    PREFIX = 'cc_namie_url_id:'
 
-    @tornado.gen.coroutine
     def get(self, url_id):
         self.add_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
         self.add_header('Pragma', 'no-cache')
@@ -43,10 +39,10 @@ class RedirectHandler(BaseHandler):
             logging.warning('redirect url not exists: %s', url_id)
             return
         
-        if not RedirectHandler.is_allow_url(data_url):
-            self.finish('Not allowed hostname.')
-            logging.warning('Not allowed hostname: %s', data_url)
-            return
+        # if not RedirectHandler.is_allow_url(data_url):
+        #     self.finish('Not allowed hostname.')
+        #     logging.warning('Not allowed hostname: %s', data_url)
+        #     return
 
         self.redirect(data_url, False, 307)
     

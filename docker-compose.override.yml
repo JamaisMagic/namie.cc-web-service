@@ -1,6 +1,6 @@
-version: "3.7"
+version: "3.8"
 
 services:
-  www_namie_cc:
+  namie_cc_web_service:
     environment:
       APP_ENV: "production"

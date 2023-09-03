@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import logging
@@ -14,9 +13,20 @@ class Helper(object):
     def execute(conn, sql, value_tuple=None):
         try:
             return conn.dbc.execute(sql, value_tuple)
-        except conn.dbc.OperationError, e:
-            logging.warn('Dal Helper OperationError %s', str(e))
+        except conn.dbc.OperationError as e:
+            logging.warwarningn('Dal Helper execute OperationError %s', str(e))
             conn.db_connect()
             return conn.dbc.execute(sql, value_tuple)
+        finally:
+            pass
+
+    @staticmethod
+    def executemany(conn, sql, args):
+        try:
+            return conn.dbc.executemany(sql, args)
+        except conn.dbc.OperationError as e:
+            logging.warning('Dal Helper executemany OperationError %s', str(e))
+            conn.db_connect()
+            return conn.dbc.executemany(sql, args)
         finally:
             pass
