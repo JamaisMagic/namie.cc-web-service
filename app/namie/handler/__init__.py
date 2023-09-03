@@ -9,6 +9,7 @@ from . import redirect
 from . import allowHostname
 from . import setCookie
 from . import sse as sse
+from . import deleteAll
 __author__ = 'Jamais'
 
 template_env = Environment(loader=PackageLoader('namie', '../static'))

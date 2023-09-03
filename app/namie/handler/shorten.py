@@ -14,7 +14,7 @@ from .. dal.shorten import Dal
 
 
 class ShortenHandler(BaseHandler):
-    PRE_FIX = 'cc_namie_url_short_'
+    PRE_FIX = 'cc_namie_url_short:'
 
     def post(self):
         origin = self.request.headers.get('Origin', '')

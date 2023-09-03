@@ -15,7 +15,7 @@ __author__ = 'Jamais'
 
 
 class RedirectHandler(BaseHandler):
-    PREFIX = 'cc_namie_url_id_'
+    PREFIX = 'cc_namie_url_id:'
 
     def get(self, url_id):
         self.add_header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate')
@@ -39,10 +39,10 @@ class RedirectHandler(BaseHandler):
             logging.warning('redirect url not exists: %s', url_id)
             return
         
-        if not RedirectHandler.is_allow_url(data_url):
-            self.finish('Not allowed hostname.')
-            logging.warning('Not allowed hostname: %s', data_url)
-            return
+        # if not RedirectHandler.is_allow_url(data_url):
+        #     self.finish('Not allowed hostname.')
+        #     logging.warning('Not allowed hostname: %s', data_url)
+        #     return
 
         self.redirect(data_url, False, 307)
     
