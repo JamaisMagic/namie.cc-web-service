@@ -1,0 +1,6 @@
+version: "3.8"
+
+services:
+  namie_cc_web_service:
+    ports:
+      - "8010-8011:8010"
