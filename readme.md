@@ -17,7 +17,6 @@ bash ./run-docker[-dev].sh build # For build the image.
 bash ./run-docker[-dev].sh up # For start the containers.
 ```
 
-
 ## supervisor 3.3.1 (Deprecated)
 
 This project does not use supervisor, the two files `./supervisord.conf` and `./supervisord.test.conf` are deprecated. If you want to use supervisor, you can modify it and run from it.
