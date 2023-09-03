@@ -24,7 +24,6 @@ services:
       - webnet
     restart: always
     volumes:
-      # - "/data/app/www.namie.cc/app:/data/app/www.namie.cc/app"
       - "~/data/logs/namie_cc_web_service:/data/log/www.namie.cc"
     # depends_on:
     #   - www_namie_cc_redis

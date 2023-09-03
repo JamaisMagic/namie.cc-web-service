@@ -15,8 +15,6 @@ elif [ "$1" == "rm" ]; then
     docker-compose -f ./docker-compose.yml rm namie_cc_web_service
 elif [ "$1" == "logs" ]; then
     docker-compose -f ./docker-compose.yml logs namie_cc_web_service
-elif [ "$1" == "static" ]; then
-    echo "Deploy static files."
 else
     echo "Unexpected parameter: $1"
 fi
