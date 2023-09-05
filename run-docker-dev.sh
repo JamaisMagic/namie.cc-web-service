@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-
 if [ "$1" == "build" ]; then
     docker-compose -f ./docker-compose.yml -f ./docker-compose.dev.override.yml build namie_cc_web_service
 elif [ "$1" == "up" ]; then
