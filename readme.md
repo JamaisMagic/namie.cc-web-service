@@ -42,6 +42,23 @@ sudo crontab -e
 
 Frontend and backend projects are separated, checkout this project for frontend project[namie.cc-web-app](https://github.com/JamaisMagic/namie.cc-web-app)
 
+## Edit crontab
+
+```bash
+crontab -e # Edit current users's crontab.
+
+# 0 0,13 * * * bash ~/data/app/namie.cc-web-service/app/scripts/cron/clear-url-data.sh
+
+crontab -l # List current user's cron jobs.
+```
+
+Maybe cron jobs log are located at /var/log/syslog or /var/log/
+See just cron jobs in that logfile by running
+
+```bash
+grep CRON /var/log/syslog
+```
+
 ## Misc
 
 Because the container does not map ports to the host, you should run a script in another container with the same network(--network webnet).
