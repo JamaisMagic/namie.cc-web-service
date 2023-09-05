@@ -20,7 +20,7 @@ handlers = [
     (r"/api/allowed_hostname/?", hdl.allowHostname.AllowedHostnameHandler),
     (r"/api/cookie/?", hdl.setCookie.SetCookieHandler),
     (r"/api/sse/demon/interval/?", hdl.sse.demon.IntervalHdl),
-    (r"/api/manage/delete-all/?", hdl.deleteAll.DeleteAllHandler),
+    (r"/api-manage/delete-all/?", hdl.deleteAll.DeleteAllHandler),
     (r"/([0-9|a-z|A-Z]+/?)", hdl.redirect.RedirectHandler)
 ]
 
