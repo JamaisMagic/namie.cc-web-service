@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-
 git pull origin master:master && \
 if [ "$1" == "build" ]; then
     docker-compose -f ./docker-compose.yml -f ./docker-compose.override.yml build namie_cc_web_service

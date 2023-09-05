@@ -19,7 +19,7 @@ bash ./run-docker[-dev].sh up # For start the containers.
 
 ## supervisor 3.3.1 (Deprecated)
 
-This project does not use supervisor, the two files `./supervisord.conf` and `./supervisord.test.conf` are deprecated. If you want to use supervisor, you can modify it and run from it.
+Supervisor is removed, use Docker instead.
 
 ## Auto run when reboot on ubuntu 16.04 (Deprecated, use docker instead.)
 
