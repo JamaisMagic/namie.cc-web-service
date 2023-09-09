@@ -22,7 +22,7 @@ if APP_ENV not in ('development', 'production'):
     raise Exception("APP_ENV type error: %s" % APP_ENV)
 
 if APP_ENV == 'production':
-    HOST = 'http://namie.cc'
+    HOST = 'https://namie.cc'
 else:
     HOST = 'http://qa.namie.cc'
 
@@ -55,3 +55,10 @@ ALLOW_URL_HOSTNAME = (
     'github.com',
     'www.github.com',
 )
+
+REQUEST_ALLOW_ORIGIN = [
+    'https://www.namie.cc', 'http://www.namie.cc', 'https://namie.cc', 'http://namie.cc',
+    'https://www.picoluna.com', 'http://www.picoluna.com', 'https://picoluna.com', 'http://picoluna.com',
+    'https://qa.namie.cc', 'http://qa.namie.cc', 'https://qa.www.namie.cc', 'http://qa.www.namie.cc',
+    'http://127.0.0.1:5173', 'http://localhost:5173',
+]
