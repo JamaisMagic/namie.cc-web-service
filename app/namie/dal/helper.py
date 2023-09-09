@@ -2,7 +2,7 @@
 
 import logging
 
-__author__ = 'Jamais'
+__author__ = "Jamais"
 
 
 class Helper(object):
@@ -14,7 +14,7 @@ class Helper(object):
         try:
             return conn.dbc.execute(sql, value_tuple)
         except conn.dbc.OperationError as e:
-            logging.warwarningn('Dal Helper execute OperationError %s', str(e))
+            logging.warning("Dal Helper execute OperationError %s", str(e))
             conn.db_connect()
             return conn.dbc.execute(sql, value_tuple)
         finally:
@@ -25,7 +25,7 @@ class Helper(object):
         try:
             return conn.dbc.executemany(sql, args)
         except conn.dbc.OperationError as e:
-            logging.warning('Dal Helper executemany OperationError %s', str(e))
+            logging.warning("Dal Helper executemany OperationError %s", str(e))
             conn.db_connect()
             return conn.dbc.executemany(sql, args)
         finally:

@@ -3,7 +3,7 @@
 import logging
 from timeit import default_timer as timer
 
-__author__ = 'Jamais'
+__author__ = "Jamais"
 
 
 class Dal(object):
@@ -15,7 +15,7 @@ class Dal(object):
         dbc.ping(True)
         cursor = dbc.cursor()
 
-        sql_select = 'select url from url where id=%s limit 1'
+        sql_select = "select url from url where id=%s limit 1"
         count = cursor.execute(sql_select, (id_base_10,))
         dbc.commit()
 
@@ -35,7 +35,7 @@ class Dal(object):
         dbc.ping(True)
         cursor = dbc.cursor()
 
-        sql_select = 'select url from {0} where id=%s limit 1'.format(table_name)
+        sql_select = "select url from {0} where id=%s limit 1".format(table_name)
         count = cursor.execute(sql_select, (id_base_10,))
         dbc.commit()
 
