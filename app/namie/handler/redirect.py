@@ -35,24 +35,24 @@ class RedirectHandler(BaseHandler):
                 rdbc.setex(self.PREFIX + str(redirect_id_base_10), 3600 * 24 * 7, data_url)
 
         if data_url is None:
-            self.finish('No such url.')
+            self.finish('Url not exists.')
             logging.warning('redirect url not exists: %s', url_id)
             return
-        
+
         # if not RedirectHandler.is_allow_url(data_url):
         #     self.finish('Not allowed hostname.')
         #     logging.warning('Not allowed hostname: %s', data_url)
         #     return
 
         self.redirect(data_url, False, 307)
-    
+
     @staticmethod
     def is_allow_url(url):
         parse_re = urlparse(url)
         if parse_re.scheme != 'https':
               return False
-        
+
         if parse_re.netloc not in config.ALLOW_URL_HOSTNAME:
             return False
-        
-        return True    
+
+        return True
