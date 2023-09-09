@@ -9,7 +9,8 @@ from .baseHandle import BaseHandler
 
 class AllowedHostnameHandler(BaseHandler):
     def get(self):
-        self.res_success({
-            'hostname_list': config.ALLOW_URL_HOSTNAME,
-        })
-    
+        self.res_success(
+            {
+                "hostname_list": config.ALLOW_URL_HOSTNAME,
+            }
+        )

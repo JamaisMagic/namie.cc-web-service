@@ -5,7 +5,7 @@ class Base62:
     def __init__(self):
         pass
 
-    BASE62 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     @staticmethod
     def encode(num, alphabet=BASE62):
@@ -17,7 +17,7 @@ class Base62:
             num, rem = divmod(num, base)
             arr.append(alphabet[rem])
         arr.reverse()
-        return ''.join(arr)
+        return "".join(arr)
 
     @staticmethod
     def decode(string, alphabet=BASE62):
@@ -27,8 +27,8 @@ class Base62:
 
         idx = 0
         for char in string:
-            power = (strlen - (idx + 1))
-            num += alphabet.index(char) * (base ** power)
+            power = strlen - (idx + 1)
+            num += alphabet.index(char) * (base**power)
             idx += 1
 
         return num

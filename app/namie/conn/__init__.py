@@ -16,20 +16,22 @@ class Conn:
     def db_connect(self):
         db_setting = config.DB
         conn = pymysql.connect(
-            host=db_setting['HOST'],
-            port=int(db_setting['PORT']),
-            user=db_setting['USER'],
-            passwd=db_setting['PWD'],
-            db=db_setting['DB'],
-            charset='utf8')
+            host=db_setting["HOST"],
+            port=int(db_setting["PORT"]),
+            user=db_setting["USER"],
+            passwd=db_setting["PWD"],
+            db=db_setting["DB"],
+            charset="utf8",
+        )
 
         self.dbc = conn
 
     def rdb_connect(self):
         rdb_setting = config.RDB
         rconn = redis.StrictRedis(
-            host=rdb_setting['HOST'],
-            port=int(rdb_setting['PORT']),
-            db=rdb_setting['DB'])
+            host=rdb_setting["HOST"],
+            port=int(rdb_setting["PORT"]),
+            db=rdb_setting["DB"],
+        )
 
         self.rdbc = rconn
