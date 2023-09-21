@@ -21,5 +21,5 @@ fi
 docker rmi $(docker images -f "dangling=true" -q)
 
 if [ "$1" == "up" ]; then
-    sleep 5 && docker ps
+    sleep 10 && docker ps
 fi
